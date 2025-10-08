@@ -6337,7 +6337,7 @@ Transform:
   m_GameObject: {fileID: 809315889}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.25612217, z: -0, w: 0.96664447}
-  m_LocalPosition: {x: 2.04, y: 1, z: 4.74}
+  m_LocalPosition: {x: -6.34, y: 1, z: 9.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6591,7 +6591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &952559086
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6620,7 +6620,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952559085}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6693,7 +6693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce5afbf7ee537a14fbeb75f1aefda85b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1847392640}
+  camera: {fileID: 1847392641}
 --- !u!1 &956733967
 GameObject:
   m_ObjectHideFlags: 0
@@ -7215,7 +7215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365215795}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06518924, y: 0.8599365, z: -0.11363982, w: 0.4933008}
+  m_LocalRotation: {x: 0.12202562, y: 0.8487905, z: -0.22353055, w: 0.46335587}
   m_LocalPosition: {x: -13.569, y: 5.864, z: 13.868}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7241,7 +7241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1650615867
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7270,7 +7270,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650615866}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7343,7 +7343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce5afbf7ee537a14fbeb75f1aefda85b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1365215795}
+  camera: {fileID: 1365215797}
 --- !u!1 &1758485114
 GameObject:
   m_ObjectHideFlags: 0
