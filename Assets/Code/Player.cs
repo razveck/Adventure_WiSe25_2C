@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
 	public float turnSpeed;
 	public Transform directionReference;
 
-	public GameObject currentInteractable;
+	public Interactable currentInteractable;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start() {
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour {
 	private void Interact_performed(InputAction.CallbackContext obj) {
 		//test
 		if(currentInteractable != null)
-			Destroy(currentInteractable);
+			currentInteractable.Interact();
 	}
 
 	// Update is called once per frame
@@ -58,11 +58,17 @@ public class Player : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		currentInteractable = other.gameObject;
+		Interactable interactable = other.GetComponent<Interactable>(); //sucht nach einem Interactable Component auf "other"
+
+		if(interactable != null) //wenn es nicht null ist, haben wir auf jeden Fall ein Interactable berührt
+			currentInteractable = interactable;
 	}
 
 	private void OnTriggerExit(Collider other) {
-		currentInteractable = null;
+		Interactable interactable = other.GetComponent<Interactable>(); 
+		
+		if(interactable != null)
+			currentInteractable = null;
 	}
 
 }
