@@ -1,6 +1,11 @@
 using UnityEngine;
 
 public class NPC : Interactable {
+
+	public DialogLine dialog;
+
+	public DialogScreen dialogScreen;
+
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start() {
 
@@ -13,6 +18,6 @@ public class NPC : Interactable {
 
 	public override void Interact() {
 		base.Interact();
-		Debug.Log("NPC");
+		dialogScreen.ShowDialog(dialog);
 	}
 }
