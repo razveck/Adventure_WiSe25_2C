@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 
 public class DialogScreen : MonoBehaviour {
@@ -12,6 +15,11 @@ public class DialogScreen : MonoBehaviour {
 	public TMP_Text dialogTMP;
 	public GameObject[] choiceButtons;
 	public GameObject continueButton;
+
+	public PlayerInput input;
+
+	//nur wenn man eine FreeLookCamera hat
+	public CinemachineInputAxisController cinemachineController;
 
 	//optional für portrait
 	//public UnityEngine.UI.Image portrait;
@@ -39,10 +47,20 @@ public class DialogScreen : MonoBehaviour {
 
 		if(dialog.choices.Length == 0) {
 			continueButton.SetActive(true);
+			EventSystem.current.SetSelectedGameObject(continueButton);
 		} else {
 			continueButton.SetActive(false);
+			EventSystem.current.SetSelectedGameObject(choiceButtons[0]);
 		}
 
+		input.SwitchCurrentActionMap("UI");
+		cinemachineController.enabled = false;
+	}
+
+	public void Hide(){
+		panel.SetActive(false);
+		input.SwitchCurrentActionMap("Player");
+		cinemachineController.enabled = true;
 	}
 
 	public void SelectChoice(int index) {
@@ -53,7 +71,7 @@ public class DialogScreen : MonoBehaviour {
 		if(currentDialog.defaultNextLine != null)
 			ShowDialog(currentDialog.defaultNextLine);
 		else
-			panel.SetActive(false);
+			Hide();
 	}
 
 }
