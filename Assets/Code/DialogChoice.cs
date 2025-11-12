@@ -5,5 +5,6 @@ using UnityEngine;
 [System.Serializable] //erlaubt Unity die Daten aus der Klasse zu lesen und zu speichern
 public class DialogChoice {
 	public string text;
+	public string id;
 	public DialogLine nextLine;
 }

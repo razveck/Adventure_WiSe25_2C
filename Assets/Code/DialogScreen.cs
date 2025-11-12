@@ -21,6 +21,9 @@ public class DialogScreen : MonoBehaviour {
 	//nur wenn man eine FreeLookCamera hat
 	public CinemachineInputAxisController cinemachineController;
 
+	public event System.Action<string> onDialogChoice;
+
+
 	//optional für portrait
 	//public UnityEngine.UI.Image portrait;
 
@@ -64,6 +67,8 @@ public class DialogScreen : MonoBehaviour {
 	}
 
 	public void SelectChoice(int index) {
+		if(onDialogChoice != null)
+			onDialogChoice.Invoke(currentDialog.choices[index].id);
 		ShowDialog(currentDialog.choices[index].nextLine);
 	}
 
