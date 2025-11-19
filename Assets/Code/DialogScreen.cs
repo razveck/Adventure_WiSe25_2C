@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using FMODUnity;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class DialogScreen : MonoBehaviour {
 	public GameObject continueButton;
 
 	public PlayerInput input;
+
+	public StudioEventEmitter emitter;
 
 	//nur wenn man eine FreeLookCamera hat
 	public CinemachineInputAxisController cinemachineController;
@@ -38,6 +41,9 @@ public class DialogScreen : MonoBehaviour {
 		panel.SetActive(true);
 		nameTMP.text = dialog.characterName;
 		dialogTMP.text = dialog.dialogText;
+		//emitter.EventReference = dialog.fmodEvent;
+		//emitter.Play();
+		RuntimeManager.PlayOneShot(dialog.fmodEvent); //Variante ohne EventEmitter
 
 		for(int i = 0; i < choiceButtons.Length; i++) {
 			if(i < dialog.choices.Length) {

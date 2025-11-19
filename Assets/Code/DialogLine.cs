@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using FMODUnity;
 using UnityEngine;
 
 public class DialogLine : MonoBehaviour {
@@ -11,6 +12,7 @@ public class DialogLine : MonoBehaviour {
 	//optional
 	//public Sprite portrait;
 	//animation, audio, usw.
+	public EventReference fmodEvent;
 
 	/*ARRAY BEISPIEL
 	void Func(){
