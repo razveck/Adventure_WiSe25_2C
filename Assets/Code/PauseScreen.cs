@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseScreen : MonoBehaviour {
@@ -19,6 +20,19 @@ public class PauseScreen : MonoBehaviour {
 	void Start() {
 		input.actions.FindActionMap("Player").FindAction("Pause").performed += TogglePause;
 		input.actions.FindActionMap("UI").FindAction("Pause").performed += TogglePause;
+
+		resumeBtn.onClick.AddListener(Unpause);
+
+		settingsBtn.onClick.AddListener(() => {
+			settingsPanel.SetActive(true);
+			pausePanel.SetActive(false);
+		});
+
+		exitBtn.onClick.AddListener(() => {
+			input.actions.FindActionMap("Player").FindAction("Pause").performed -= TogglePause;
+			input.actions.FindActionMap("UI").FindAction("Pause").performed -= TogglePause;
+			SceneManager.LoadScene("StartScreen");
+		});
 	}
 
 	private void TogglePause(InputAction.CallbackContext obj) {
@@ -36,7 +50,9 @@ public class PauseScreen : MonoBehaviour {
 
 	private void Unpause() {
 		Time.timeScale = 1;
-		input.SwitchCurrentActionMap("Player");
+		if(!dialogPanel.activeSelf) {
+			input.SwitchCurrentActionMap("Player");
+		}
 		pausePanel.SetActive(false);
 		settingsPanel.SetActive(false);
 	}

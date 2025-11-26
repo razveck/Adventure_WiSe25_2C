@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 	private InputAction moveAction;
 
 	public CharacterController controller;
+	public Animator animator;
 	public float speed;
 	public float turnSpeed;
 	public Transform directionReference;
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour {
 		moveAction = input.actions.FindAction("Move");
 
 		input.actions.FindAction("Interact").performed += Interact_performed;
+
 	}
 
 	private void Interact_performed(InputAction.CallbackContext obj) {
@@ -55,6 +57,8 @@ public class Player : MonoBehaviour {
 			//transform (klein) verweist auf "this" transform
 			transform.forward = Vector3.Slerp(transform.forward, moveDirection, Time.deltaTime * turnSpeed);
 		}
+
+		animator.SetFloat("speed", inputDirection.magnitude * speed);
 	}
 
 	private void OnTriggerEnter(Collider other) {
@@ -65,8 +69,8 @@ public class Player : MonoBehaviour {
 	}
 
 	private void OnTriggerExit(Collider other) {
-		Interactable interactable = other.GetComponent<Interactable>(); 
-		
+		Interactable interactable = other.GetComponent<Interactable>();
+
 		if(interactable != null)
 			currentInteractable = null;
 	}
