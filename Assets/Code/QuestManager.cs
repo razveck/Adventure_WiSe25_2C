@@ -1,8 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class QuestManager : MonoBehaviour {
+
+public class QuestManager : MonoBehaviour
+{
 
 	public DialogScreen dialogScreen;
 
@@ -12,32 +15,55 @@ public class QuestManager : MonoBehaviour {
 	public Item bottle;
 	public DialogLine npc1_dialog2;
 
-	void Start() {
+
+	void Start()
+	{
 		StartCoroutine(Quest1());
+		StartCoroutine(Quest2());
 	}
 
-	IEnumerator Quest1(){
+	IEnumerator Quest1()
+	{
 
 		yield return WaitForDialogChoice("quest1Start");
 
-		questDisplay.transform.parent.gameObject.SetActive(true);
-		questDisplay.text = "Finde eine Flasche";
+		TMP_Text myDisplay = Instantiate(questDisplay, questDisplay.transform.parent);
+
+		//myDisplay.transform.parent.gameObject.SetActive(true);
+		myDisplay.text = "Finde eine Flasche";
 
 		bottle.gameObject.SetActive(true);
 		yield return WaitForItem(bottle);
 
-		questDisplay.text = "Bringe die Flasche zurück";
+		myDisplay.text = "Bringe die Flasche zurï¿½ck";
 
 		npc1.dialog = npc1_dialog2;
 
 		yield return WaitForNPC(npc1);
-		questDisplay.transform.parent.gameObject.SetActive(false);
+		//myDisplay.transform.parent.gameObject.SetActive(false);
+
+
+		Destroy(myDisplay.gameObject);
 	}
 
-	IEnumerator WaitForNPC(NPC npc){
+	IEnumerator Quest2(){
+		Debug.Log("Quest 2 start");
+		TMP_Text myDisplay = Instantiate(questDisplay, questDisplay.transform.parent);
+		myDisplay.text = "HUHIU";
+		
+		yield return new WaitForSeconds(5);
+
+		Debug.Log("Quest 2 end");
+		Destroy(myDisplay.gameObject);
+
+	}
+
+	IEnumerator WaitForNPC(NPC npc)
+	{
 		bool talked = false;
 
-		System.Action action = () => {
+		System.Action action = () =>
+		{
 			talked = true;
 		};
 
@@ -48,10 +74,12 @@ public class QuestManager : MonoBehaviour {
 		npc.onInteracted -= action;
 	}
 
-	IEnumerator WaitForItem(Item item){
+	IEnumerator WaitForItem(Item item)
+	{
 		bool talked = false;
 
-		System.Action action = () => {
+		System.Action action = () =>
+		{
 			talked = true;
 		};
 
@@ -62,12 +90,14 @@ public class QuestManager : MonoBehaviour {
 		item.onInteracted -= action;
 	}
 
-	IEnumerator WaitForDialogChoice(string id) {
+	IEnumerator WaitForDialogChoice(string id)
+	{
 		bool talked = false;
 
-		//wir warten auf eine BESTIMMTE id (wir müssen die ids filtern)
-		System.Action<string> action = (inputId) => {
-			if(inputId == id)
+		//wir warten auf eine BESTIMMTE id (wir mï¿½ssen die ids filtern)
+		System.Action<string> action = (inputId) =>
+		{
+			if (inputId == id)
 				talked = true;
 		};
 
@@ -77,7 +107,7 @@ public class QuestManager : MonoBehaviour {
 
 		dialogScreen.onDialogChoice -= action;
 	}
-	
+
 
 	/* COROTUINE BEISPIEL
 	IEnumerator Start() {
