@@ -5,6 +5,8 @@ public class Item : Interactable {
 
 	public StudioEventEmitter emitter;
 
+	public ItemType type;
+
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start() {
 
@@ -15,10 +17,14 @@ public class Item : Interactable {
 
 	}
 
-	//override überschreibt/erweitert die Basis Funktion (in der Base Class)
+	//override ï¿½berschreibt/erweitert die Basis Funktion (in der Base Class)
 	public override void Interact() {
 		base.Interact();
 		Debug.Log("Item");
 		emitter.Play();
 	}
+}
+
+public enum ItemType {
+	Bottle, Key, Apple
 }

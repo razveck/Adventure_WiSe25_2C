@@ -32,7 +32,7 @@ public class DialogScreen : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-
+		
 	}
 
 	public void ShowDialog(DialogLine dialog) {

@@ -22,6 +22,7 @@ public class QuestManager : MonoBehaviour
 		StartCoroutine(Quest2());
 	}
 
+
 	IEnumerator Quest1()
 	{
 

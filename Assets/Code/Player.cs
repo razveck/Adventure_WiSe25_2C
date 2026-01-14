@@ -24,16 +24,21 @@ public class Player : MonoBehaviour {
 
 	private void Interact_performed(InputAction.CallbackContext obj) {
 		//test
-		if(currentInteractable != null)
+		if(currentInteractable != null){
 			currentInteractable.Interact();
+
+			if(currentInteractable is Item)
+				if( ((Item)currentInteractable).type == ItemType.Apple)
+					Debug.Log("ICH HABE EINEN APFEL");
+		}
 	}
 
 	// Update is called once per frame
 	void Update() {
 		Vector2 inputDirection = moveAction.ReadValue<Vector2>();
 
-		//nur für feste Kamera!!!
-		//wenn wir die "Move" Taste drücken, übernimmt das Reference Object die Camera Rotation
+		//nur fï¿½r feste Kamera!!!
+		//wenn wir die "Move" Taste drï¿½cken, ï¿½bernimmt das Reference Object die Camera Rotation
 		if(moveAction.WasPressedThisFrame())
 			directionReference.rotation = Camera.main.transform.rotation;
 
@@ -64,7 +69,7 @@ public class Player : MonoBehaviour {
 	private void OnTriggerEnter(Collider other) {
 		Interactable interactable = other.GetComponent<Interactable>(); //sucht nach einem Interactable Component auf "other"
 
-		if(interactable != null) //wenn es nicht null ist, haben wir auf jeden Fall ein Interactable berührt
+		if(interactable != null) //wenn es nicht null ist, haben wir auf jeden Fall ein Interactable berï¿½hrt
 			currentInteractable = interactable;
 	}
 
